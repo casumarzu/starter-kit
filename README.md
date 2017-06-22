@@ -3,7 +3,7 @@
 Install npm dependencies.
 
 ```bash
-$ npm install
+$ npm i
 ```
 
 Run dev version:

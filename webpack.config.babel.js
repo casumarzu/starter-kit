@@ -9,16 +9,16 @@ import postcss from './webpack/postcss'
 const NODE_ENV = process.env.NODE_ENV
 
 const vendor = [
-  // 'react',
-  // 'react-redux',
-  // 'react-router',
-  // 'react-router-redux',
-  // 'redux',
+  'react',
+  'react-redux',
+  'react-router',
+  'react-router-redux',
+  'redux',
   // 'redux-devtools',
   // 'redux-devtools',
   // 'redux-devtools-dock-monitor',
-  // 'redux-saga',
-  // 'redux-form',
+  'redux-saga',
+  'redux-form',
   'babel-polyfill',
   'whatwg-fetch'
 ]
