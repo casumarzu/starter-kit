@@ -3,7 +3,7 @@ import webpack from 'webpack'
 
 import rules from './webpack/rules'
 import plugins from './webpack/plugins'
-import postcss from './webpack/postcss'
+// import postcss from './webpack/postcss'
 // import alias from './webpack/alias'
 
 const NODE_ENV = process.env.NODE_ENV

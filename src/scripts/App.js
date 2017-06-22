@@ -29,7 +29,6 @@ const addEl = (element, options) => {
 }
 
 
-
 class App {
   constructor() {
     const root = document.getElementById('root')
@@ -77,28 +76,33 @@ class App {
     const rColor = getRandomInt(0, 255)
     const gColor = getRandomInt(0, 255)
     const bColor = getRandomInt(0, 255)
-    // 134
-    // some num
-    // 10
+
+    // rgba(134, ${someNumber}, 10)
 
     // Красивые цвета
-    // rgb(250, 164, 150);
-    // rgb(55, 155, 185);
-    // rgb(83, 1, 27);
-    // rgb(72, 4, 29);
-    // rgb(17, 40, 23);
+    const randomColor = `rgba(${rColor}, ${gColor}, ${bColor}, 1)`
+
+    const colors = [
+      'rgb(250, 164, 150)',
+      'rgb(55, 155, 185)',
+      'rgb(83, 1, 27)',
+      'rgb(17, 40, 23)',
+      'rgb(76, 209, 182)',
+      randomColor
+    ]
+
 
     let {style} = document.body
     if(element) {
       style = element.style
     }
 
-    style.backgroundColor = `rgba(${rColor}, ${gColor}, ${bColor}, 1)`
+    style.backgroundColor = colors[getRandomInt(0, colors.length - 1)]
     style.fontSize = `${getRandomInt(10, 35)}px`
   }
 
   renderImages() {
-    const arr = [1,2,3,4,5]
+    // const arr = [1,2,3,4,5]
     // arr.forEach( item => {
     //   rootNode.appendChild(this.renderImage(image))
     // })

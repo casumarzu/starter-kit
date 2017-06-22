@@ -15,6 +15,7 @@ import StyleLintPlugin from 'stylelint-webpack-plugin'
 import colors from 'colors'
 import chalk from 'chalk'
 import ProgressBarPlugin from 'progress-bar-webpack-plugin'
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer'
 import postcss from './postcss'
 
 const {
@@ -64,6 +65,19 @@ const StylLint = new StyleLintPlugin({
   failOnError: false
 })
 
+const BundleAnalyzer = new BundleAnalyzerPlugin({
+  analyzerMode: 'server',
+  analyzerHost: '127.0.0.1',
+  analyzerPort: 8888,
+  reportFilename: 'report.html',
+  defaultSizes: 'parsed',
+  openAnalyzer: true,
+  generateStatsFile: false,
+  statsFilename: 'stats.json',
+  statsOptions: null,
+  logLevel: 'info'
+})
+
 const SourceMap = new SourceMapDevToolPlugin()
 
 const plugins = [
@@ -73,13 +87,14 @@ const plugins = [
   Define,
   Chunks,
   StylLint,
-  SourceMap,
+  SourceMap
 ]
 
 const devPlugins = [
-  // new NpmInstallPlugin(),
+  BundleAnalyzer,
   new HotModuleReplacementPlugin(),
   new NoEmitOnErrorsPlugin(),
+  // new NpmInstallPlugin(),
   // new ExtractTextPlugin(),
   // new OccurenceOrderPlugin(),
 
