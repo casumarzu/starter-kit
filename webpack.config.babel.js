@@ -7,6 +7,7 @@ import plugins from './webpack/plugins'
 // import alias from './webpack/alias'
 
 const NODE_ENV = process.env.NODE_ENV
+const isDev = NODE_ENV === 'development'
 
 const vendor = [
   'react',
@@ -25,12 +26,11 @@ const vendor = [
 
 const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'
 
+const app = ['./src/scripts/index.js']
+if(isDev) app.unshift(hotMiddlewareScript)
+
 export default {
-  entry: {
-    app: [hotMiddlewareScript, './src/scripts/index.js'],
-    // app: ['./src/scripts/index.js'],
-    vendor
-  },
+  entry: { app, vendor },
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',

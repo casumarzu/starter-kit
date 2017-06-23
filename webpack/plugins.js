@@ -19,7 +19,6 @@ import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer'
 import postcss from './postcss'
 
 const {
-  DedupePlugin,
   OccurenceOrderPlugin,
   UglifyJsPlugin,
   CommonsChunkPlugin
@@ -97,13 +96,11 @@ const devPlugins = [
   // new NpmInstallPlugin(),
   // new ExtractTextPlugin(),
   // new OccurenceOrderPlugin(),
-
 ]
 
 const prodPlugins = [
   // new ExtractTextPlugin('bundle.[hash].css', { allChunks: true }),
   new UglifyJsPlugin({compressor: { warnings: false }}),
-  new DedupePlugin(),
   // new OccurenceOrderPlugin(),
 ]
 
