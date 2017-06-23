@@ -24,7 +24,7 @@ const {
   CommonsChunkPlugin
 } = optimize
 const {NODE_ENV} = process.env
-const title = 'Starter-kit'
+const title = '🚀Starter-kit'
 
 const Html = new HtmlWebpackPlugin({
   title: NODE_ENV === 'production' ? title : `Dev ${title}`,
