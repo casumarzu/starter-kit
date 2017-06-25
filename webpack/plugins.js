@@ -90,9 +90,9 @@ const plugins = [
 ]
 
 const devPlugins = [
-  BundleAnalyzer,
   new HotModuleReplacementPlugin(),
   new NoEmitOnErrorsPlugin(),
+  // BundleAnalyzer,
   // new NpmInstallPlugin(),
   // new ExtractTextPlugin(),
   // new OccurenceOrderPlugin(),

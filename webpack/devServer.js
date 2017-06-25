@@ -1,7 +1,9 @@
+import path from 'path'
 import express from 'express'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
+import proxyMiddleware from 'http-proxy-middleware'
 import webpackConfig from '../webpack.config.babel.js'
 const PORT = 8080
 
@@ -17,7 +19,21 @@ const compiler = webpack(webpackConfig)
 
 app.use(webpackDevMiddleware(compiler, {
   publicPath: '/',
-  quiet: true
+  contentBase: path.join(__dirname, 'src'),
+  hot: true,
+  quiet: false,
+  historyApiFallback: true,
+  https: true,
+  progress: true
+}))
+
+app.use('/api', proxyMiddleware({
+  target: 'https://jsonplaceholder.typicode.com',
+    changeOrigin: true,
+    ws: true,
+    pathRewrite: {
+      '^/api/' : '',
+    }
 }))
 
 app.use(webpackHotMiddleware(compiler, {

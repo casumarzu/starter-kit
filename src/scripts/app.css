@@ -92,6 +92,7 @@ h6 {
     opacity: 0;
     transition: opacity 500ms ease, transform 800ms ease;
     transform: translateX(-5em);
+    font-size: 11vw;
   }
 
   * {

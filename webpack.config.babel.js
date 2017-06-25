@@ -3,8 +3,7 @@ import webpack from 'webpack'
 
 import rules from './webpack/rules'
 import plugins from './webpack/plugins'
-// import postcss from './webpack/postcss'
-// import alias from './webpack/alias'
+import alias from './webpack/alias'
 
 const NODE_ENV = process.env.NODE_ENV
 const isDev = NODE_ENV === 'development'
@@ -27,6 +26,7 @@ const vendor = [
 const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'
 
 const app = ['./src/scripts/index.js']
+
 if(isDev) app.unshift(hotMiddlewareScript)
 
 export default {
@@ -36,12 +36,12 @@ export default {
     publicPath: '/',
     filename: '[name].bundle.[hash].js'
   },
-  // resolve: {
-  //   extensions: ['', '.js', '.css'],
-  //   alias,
-  //   root: path.resolve(__dirname, 'src'),
-  //   modulesDirectories: ['node_modules']
-  // },
+  resolve: {
+    alias,
+    // extensions: ['', '.js', '.css'],
+    // root: path.resolve(__dirname, 'src'),
+    // modulesDirectories: ['node_modules']
+  },
   plugins,
   module: { rules },
   devServer: {

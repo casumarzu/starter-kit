@@ -1,4 +1,4 @@
-// import React, {Component, PropTypes, PureComponent} from 'react'
+import React, {Component, PropTypes, PureComponent} from 'react'
 import './app.css'
 import image from '../files/image.jpg'
 
@@ -28,11 +28,21 @@ const addEl = (element, options) => {
   return elementNode
 }
 
+const request = () => {
+  fetch('/api/photos')
+  .then(data => data.json())
+  .then(data => {
+    data.forEach( item => {
+      console.log(item)
+    })
+  })
+}
+
 
 class App {
   constructor() {
     const root = document.getElementById('root')
-
+    request()
     let i = 1
     while(i > 0) {
       root.appendChild( this.renderRootNode() )
@@ -50,26 +60,28 @@ class App {
   }
 
   renderHeader() {
+    const rocket = '🚀'
+    console.log(rocket)
     const text = 'Hye,dude!'
     const headerNode = addEl('h1', { text })
     return headerNode
   }
 
   renderRootNode() {
-    const rootNode = addEl('section', {
+    this.rootNode = addEl('section', {
       className: 'rootElement'
     })
 
-    rootNode.appendChild(
+    this.rootNode.appendChild(
       this.renderHeader()
     )
     setTimeout( () => {
-      rootNode.classList.add('rootElement--active')
+      this.rootNode.classList.add('rootElement--active')
     }, 300)
 
-    this.renderEffects(rootNode)
+    this.renderEffects(this.rootNode)
 
-    return rootNode
+    return this.rootNode
   }
 
   renderColors(element) {
@@ -98,10 +110,18 @@ class App {
     }
 
     style.backgroundColor = colors[getRandomInt(0, colors.length - 1)]
-    style.fontSize = `${getRandomInt(10, 35)}px`
+    // style.fontSize = `${getRandomInt(10, 35)}px`
   }
 
   renderImages() {
+    fetch('/api/photos')
+    .then(data => data.json())
+    .then(data => {
+      data.forEach( item => {
+        console.log(item)
+        this.rootNode.appendChild(this.renderImage(item.url))
+      })
+    })
     // const arr = [1,2,3,4,5]
     // arr.forEach( item => {
     //   rootNode.appendChild(this.renderImage(image))

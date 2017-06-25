@@ -19,7 +19,7 @@
       "except": ["first-nested"],
       "ignore": ["after-comment"]
     } ],
-    "unit-whitelist": ["em", "rem", "%", "s", "px", "deg", "ms", "s"],
+    "unit-whitelist": ["em", "rem", "%", "s", "px", "deg", "ms", "s", "vh", 'vw'],
     "keyframe-declaration-no-important": true,
     "length-zero-no-unit": true,
     "no-empty-source": true,
