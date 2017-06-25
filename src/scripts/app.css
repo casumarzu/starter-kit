@@ -32,6 +32,10 @@ body {
   size: 100%;
 }
 
+.root {
+  size: 100%;
+}
+
 h1,
 h2,
 h3,
@@ -105,4 +109,13 @@ h6 {
     max-height: 20em;
     margin-bottom: 5em;
   }
+}
+
+
+/*:local(.shit) {
+  background: red;
+}*/
+
+.meat {
+  background: blue;
 }

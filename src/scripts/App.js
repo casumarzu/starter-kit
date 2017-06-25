@@ -1,6 +1,8 @@
-import React, {Component, PropTypes, PureComponent} from 'react'
-import './app.css'
+// import React, {Component, PropTypes, PureComponent} from 'react'
+import appCSS from './app.css'
 import image from '../files/image.jpg'
+
+console.log(appCSS);
 
 const getRandomInt = (min, max) =>
   Math.floor(
@@ -42,7 +44,8 @@ const request = () => {
 class App {
   constructor() {
     const root = document.getElementById('root')
-    request()
+    root.classList.add(appCSS.root)
+    // request()
     let i = 1
     while(i > 0) {
       root.appendChild( this.renderRootNode() )
@@ -65,18 +68,18 @@ class App {
     const text = 'Hye,dude!'
     const headerNode = addEl('h1', { text })
     return headerNode
-  }
+  }s
 
   renderRootNode() {
     this.rootNode = addEl('section', {
-      className: 'rootElement'
+      className: appCSS.rootElement
     })
 
     this.rootNode.appendChild(
       this.renderHeader()
     )
     setTimeout( () => {
-      this.rootNode.classList.add('rootElement--active')
+      this.rootNode.classList.add(appCSS['rootElement--active'])
     }, 300)
 
     this.renderEffects(this.rootNode)
