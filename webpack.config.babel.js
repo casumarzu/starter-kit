@@ -48,6 +48,5 @@ export default {
     hot: true,
     contentBase: path.resolve(__dirname, 'dist'),
     publicPath: '/'
-  },
-  // devtool: 'cheap-module-eval-source-map'
+  }
 };

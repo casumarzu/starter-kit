@@ -3,6 +3,7 @@ import appCSS from './app.css'
 import image from '../files/image.jpg'
 
 console.log(appCSS);
+debugger
 
 const getRandomInt = (min, max) =>
   Math.floor(
@@ -34,9 +35,7 @@ const request = () => {
   fetch('/api/photos')
   .then(data => data.json())
   .then(data => {
-    data.forEach( item => {
-      console.log(item)
-    })
+    console.log(data)
   })
 }
 
@@ -65,7 +64,7 @@ class App {
   renderHeader() {
     const rocket = '🚀'
     console.log(rocket)
-    const text = 'Hye,dude!'
+    const text = 'Hey,dude!'
     const headerNode = addEl('h1', { text })
     return headerNode
   }s
