@@ -1,33 +1,27 @@
 import path from 'path'
 import webpack from 'webpack'
 
+import vendor from './webpack/vendor'
 import rules from './webpack/rules'
 import plugins from './webpack/plugins'
 import alias from './webpack/alias'
 
+const HOST = 'localhost'
+const PORT = 8080
 const NODE_ENV = process.env.NODE_ENV
 const isDev = NODE_ENV === 'development'
 
-const vendor = [
-  'react',
-  'react-redux',
-  'react-router',
-  'react-router-redux',
-  'redux',
-  // 'redux-devtools',
-  // 'redux-devtools',
-  // 'redux-devtools-dock-monitor',
-  'redux-saga',
-  'redux-form',
-  'babel-polyfill',
-  'whatwg-fetch'
-]
-
-const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'
+// const hotMiddlewareScript = 'webpack-hot-middleware/client?path=__webpack_hmr&reload=true'
 
 const app = ['./src/scripts/index.js']
 
-if(isDev) app.unshift(hotMiddlewareScript)
+// if(isDev) app.unshift(hotMiddlewareScript)
+
+if(isDev) {
+  app.unshift(`webpack-dev-server/client?http://${HOST}:${PORT}`)
+  app.unshift('react-hot-loader/patch')
+  // app.unshift('webpack/hot/only-dev-server')
+}
 
 export default {
   entry: { app, vendor },
@@ -36,17 +30,7 @@ export default {
     publicPath: '/',
     filename: '[name].bundle.[hash].js'
   },
-  resolve: {
-    alias,
-    // extensions: ['', '.js', '.css'],
-    // root: path.resolve(__dirname, 'src'),
-    // modulesDirectories: ['node_modules']
-  },
+  resolve: { alias },
   plugins,
-  module: { rules },
-  devServer: {
-    hot: true,
-    contentBase: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
-  }
-};
+  module: { rules }
+}

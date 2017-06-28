@@ -1,6 +1,7 @@
 import path from 'path'
 import webpack, {
   optimize,
+  NamedModulesPlugin,
   HotModuleReplacementPlugin,
   NoEmitOnErrorsPlugin,
   ProgressPlugin,
@@ -40,7 +41,7 @@ const Progress = new ProgressBarPlugin({
 })
 
 const Define = new DefinePlugin({
-  'process.env':{
+  'process.env': {
     'NODE_ENV': JSON.stringify(NODE_ENV)
   }
 })
@@ -91,6 +92,7 @@ const plugins = [
 
 const devPlugins = [
   new HotModuleReplacementPlugin(),
+  new NamedModulesPlugin(),
   new NoEmitOnErrorsPlugin(),
   // BundleAnalyzer,
   // new NpmInstallPlugin(),
